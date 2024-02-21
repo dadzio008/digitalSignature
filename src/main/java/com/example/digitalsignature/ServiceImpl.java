@@ -70,7 +70,7 @@ public class ServiceImpl {
         message.setFrom(new jakarta.mail.internet.InternetAddress(FROM_EMAIL));
         MimeBodyPart attachmentPart = new MimeBodyPart();
         attachmentPart.attachFile(filePath);
-        message.setRecipients(TO, jakarta.mail.internet.InternetAddress.parse(String.join("", recipientsEmails)));
+        message.setRecipients(TO, jakarta.mail.internet.InternetAddress.parse(recipientsEmails));
         message.setRecipients(CC, jakarta.mail.internet.InternetAddress.parse(CC_EMAIL, false));
         message.setSubject(EMAIL_SUBJECT);
         try {
