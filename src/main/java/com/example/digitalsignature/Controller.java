@@ -24,11 +24,20 @@ public class Controller {
         return modelAndView;
     }
 
-    @PostMapping(value = "/send")
-    public ModelAndView send(Model model, @RequestParam("files")MultipartFile[] files, @RequestParam String email){
+    @PostMapping(value = "/podpisz")
+    public ModelAndView podpisz(@RequestParam("files")MultipartFile file, @RequestParam("email")String email){
         ModelAndView modelAndView = new ModelAndView();
-        service.sendDokumentMail(files,email);
-        modelAndView.setViewName("Send");
+        service.sendDokument(file,email);
+        modelAndView.setViewName("Podpisz");
+        modelAndView.addObject("email",email);
+        return modelAndView;
+    }
+
+    @PostMapping(value = "/weryfikuj")
+    public ModelAndView weryfikuj(@RequestParam("files")MultipartFile file){
+        ModelAndView modelAndView = new ModelAndView();
+        service.verifyDokument(file.getOriginalFilename());
+        modelAndView.setViewName("Weryfikacja");
         return modelAndView;
     }
 }
